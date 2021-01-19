@@ -1,0 +1,99 @@
+.explore {
+    height: 88vh;
+    width: 100vw;
+    background-color: var(--theme-bg);
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.E__row1 {
+    flex: .58;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.E__row1__col1 {
+    height: 100%;
+    flex: .7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.E__row1__col1__row1 {
+    width: 100%;
+    flex: .65;
+    padding: 1.3rem 3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.E__row1__col1__row1 h4 {
+    font-size: 1.5rem;
+}
+
+.E__row1__col1__row2 {
+    width: 100%;
+    flex: .35;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: .3rem 3rem;
+}
+
+.E__row1__col1__row2__btnGroup {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tag__btn {
+    background-color: inherit !important;
+    padding: .7rem 1rem !important;
+    border-radius: 1rem !important;
+    border: 1px solid var(--primary) !important;
+    color: var(--primary) !important;
+}
+
+.E__row1__col2 {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    flex: .3;
+}
+
+.E__row1__col2 img {
+    position: absolute;
+}
+
+.E__row2 {
+    flex: .42;
+    width: 100%;
+    overflow-y: scroll;
+    padding: 1.3rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .4rem;
+}
+
+.E__row2::-webkit-scrollbar {
+    display: flex;
+}
+
+.Eblogs {
+    height: 15rem;
+    width: 23rem;
+    background-color: rgba(251, 122, 28, 5%);
+    border-radius: 1.5rem;
+}

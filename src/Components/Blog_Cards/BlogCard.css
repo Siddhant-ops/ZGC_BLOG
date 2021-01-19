@@ -1,0 +1,25 @@
+.blog__cards {
+    height: 15rem;
+    width: 25rem;
+    background-color: rgba(251, 122, 28, 5%);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 3rem;
+}
+
+.readtime {
+    font-size: 15px;
+}
+
+.topic__name {
+    font-size: 23px;
+}
+
+.author__name {
+    font-size: 20px;
+    color: var(--primary);
+    text-transform: capitalize;
+}

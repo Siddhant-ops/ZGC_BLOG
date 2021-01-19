@@ -1,0 +1,169 @@
+.profile {
+    height: 79.63vh;
+    width: 100vw;
+    max-width: 100%;
+    background-color: var(--theme-bg);
+    display: grid;
+    grid-template-areas: ".col1__row1 .col2__row2";
+    grid-template-columns: 30% 70%;
+}
+
+.Pcol1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Pcol1__row1 {
+    width: 100%;
+    flex: .9;
+    display: flex;
+    justify-content: center;
+}
+
+.profile__container {
+    height: 90%;
+}
+
+.profile__container img {
+    height: 100%;
+}
+
+.Pcol1__row2 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.createBlog__btn {
+    background-color: var(--primary) !important;
+    border-radius: 1rem !important;
+    color: whitesmoke !important;
+    padding: 1rem 1.5rem !important;
+}
+
+.Pcol2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Pcol2__row1 {
+    width: 100%;
+    flex: .25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Pcol2__row1__col1 {
+    height: 100%;
+    flex: .5;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.Pcol2__row1__col1 h1 {
+    color: var(--primary);
+    text-transform: capitalize;
+    font-size: 6rem;
+}
+
+.Pcol2__row1__col2 {
+    height: 100%;
+    flex: .5;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.secondary__btn {
+    background-color: inherit !important;
+    border: 1px solid var(--primary) !important;
+    color: var(--primary) !important;
+    font-weight: 600 !important;
+    border-radius: .75rem !important;
+}
+
+.Email__modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(28, 136, 230, 0.544);
+}
+
+.Email__modal__paper {
+    outline: none;
+    background-color: var(--theme-bg);
+    border: 2px solid var(--primary);
+    height: 10rem;
+    width: 45rem;
+    border-radius: 17px;
+}
+
+.Email__modal__paper form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Email__modal__paper input {
+    width: 90%;
+    font-size: 2rem;
+    border-radius: .7rem;
+    outline: none;
+    border: none;
+    border: 1px solid var(--primary);
+    background-color: inherit;
+    padding-left: 20px;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.changeEmail__btn {
+    padding: .7rem 1rem !important;
+    border: 2px solid var(--primary) !important;
+    font-size: 18px !important;
+    border-radius: .7rem !important;
+    color: var(--primary) !important;
+    font-weight: 600 !important;
+}
+
+.Pcol2__row2 {
+    width: 100%;
+    flex: .75;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.Pcol2__row2__row1 {
+    flex: .15;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    width: 100%;
+    border-bottom: 2px solid var(--primary);
+}
+
+.Pcol2__row2__row2 {
+    flex: .85;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .4rem;
+    overflow-y: scroll;
+    padding: 20px 0;
+}
+
+.Pcol2__row2__row2::-webkit-scrollbar {
+    display: none;
+}
