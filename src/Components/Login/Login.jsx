@@ -1,57 +1,60 @@
 import React, { useState } from "react";
-import { useStateValue } from "../../UserContext/Stateprovider";
 import { Button } from "@material-ui/core";
 import "./Login.css";
 import mobile from "./Saly-12.png";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+import { useStateValue } from "../../UserContext/Stateprovider";
 import { actionTypes } from "../../UserContext/reducer";
-import { Link, useHistory } from "react-router-dom";
 
 const Login = () => {
   const [{}, dispatch] = useStateValue();
   const history = useHistory();
   const [form, setForm] = useState(true);
 
+  // For login
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPasswd, setLoginPasswd] = useState("");
+
+  // For Signup
   const [username, setusername] = useState("");
   const [email, setEmail] = useState("");
   const [passwd, setPasswd] = useState("");
 
-  // const login = async () => {
-  //   const data = {
-  //     email: email,
-  //     password: passwd,
-  //   };
-  //   await axios
-  //     .post("http://localhost/api/auth/local/login", data)
-  //     .then((res) => {
-  //       const userInfo = res.data.token;
-  //       localStorage.setItem("token", res.data.token);
-  //       dispatch({
-  //         type: actionTypes.SET_USER,
-  //         user: userInfo,
-  //       });
-  //     })
-  //     .catch((err) => console.log(err));
+  function parseJwt(token) {
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
 
-  //   setEmail("");
-  //   setPasswd("");
-  //   history.push("/profile");
-  // };
+    return JSON.parse(jsonPayload);
+  }
 
+  // Login Function
   const login = async () => {
     const data = {
-      email: email,
-      password: passwd,
+      email: loginEmail,
+      password: loginPasswd,
     };
     await axios
       .post("http://localhost/api/auth/local/login", data)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        dispatch({
+          type: actionTypes.SET_USER,
+          userInfo: parseJwt(res.data.token),
+        });
       })
       .catch((err) => console.log(err));
 
-    setEmail("");
-    setPasswd("");
+    setLoginEmail("");
+    setLoginPasswd("");
     history.push("/profile");
   };
 
@@ -63,34 +66,35 @@ const Login = () => {
       password: passwd,
     };
 
-    function parseJwt(token) {
-      var base64Url = token.split(".")[1];
-      var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-      var jsonPayload = decodeURIComponent(
-        atob(base64)
-          .split("")
-          .map(function (c) {
-            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-          })
-          .join("")
-      );
-
-      return JSON.parse(jsonPayload);
-    }
-
     await axios
       .post("http://localhost/api/auth/local/register", data)
       .then((res) => {
-        const userInfo = parseJwt(res.data.token);
+        localStorage.setItem("token", res.data.token);
         dispatch({
           type: actionTypes.SET_USER,
-          user: userInfo,
+          userInfo: parseJwt(res.data.token),
         });
       })
       .catch((err) => console.log(err));
     setEmail("");
     setPasswd("");
-    // history.push("/profile");
+    setusername("");
+    history.push("/profile");
+  };
+
+  const loginDisable = () => {
+    if (loginEmail === "" && loginPasswd === "") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const SigninDisable = () => {
+    if (username === "" && email === "" && passwd === "") {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -111,10 +115,11 @@ const Login = () => {
                 <div className="form__groupContainer">
                   <div className="form__container">
                     <input
+                      autoFocus
                       onChange={(e) => {
-                        setEmail(e.target.value);
+                        setLoginEmail(e.target.value);
                       }}
-                      value={email}
+                      value={loginEmail}
                       type="email"
                       name="Email"
                       autoComplete="off"
@@ -129,9 +134,9 @@ const Login = () => {
                   <div className="form__container">
                     <input
                       onChange={(e) => {
-                        setPasswd(e.target.value);
+                        setLoginPasswd(e.target.value);
                       }}
-                      value={passwd}
+                      value={loginPasswd}
                       id="passwd"
                       type="password"
                       name="Password"
@@ -143,7 +148,11 @@ const Login = () => {
                     </label>
                   </div>
                 </div>
-                <Button type="submit" className="login__btn">
+                <Button
+                  disabled={loginDisable()}
+                  type="submit"
+                  className="login__btn"
+                >
                   Login
                 </Button>
               </form>
@@ -156,7 +165,6 @@ const Login = () => {
                 }}
               >
                 Signup
-                {/* <Link to="/register">Signup</Link> */}
               </span>
             </p>
           </div>
@@ -172,11 +180,12 @@ const Login = () => {
                 <div className="form__groupContainer__1">
                   <div className="form__container__1">
                     <input
+                      autoFocus
                       onChange={(e) => {
                         setusername(e.target.value);
                       }}
                       value={username}
-                      type="email"
+                      type="text"
                       name="Username"
                       autoComplete="off"
                       required
@@ -221,7 +230,11 @@ const Login = () => {
                     </label>
                   </div>
                 </div>
-                <Button type="submit" className="login__btn__1">
+                <Button
+                  disabled={SigninDisable()}
+                  type="submit"
+                  className="login__btn__1"
+                >
                   Signup
                 </Button>
               </form>

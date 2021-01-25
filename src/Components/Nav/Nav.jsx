@@ -3,10 +3,8 @@ import "./Nav.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useStateValue } from "../../UserContext/Stateprovider";
 
 const Nav = ({ userinfo }) => {
-  // const [{ user }, dispatch] = useStateValue();
   const [user, setUser] = useState([]);
   const [checkuser, setCheckuser] = useState(true);
 
@@ -25,60 +23,75 @@ const Nav = ({ userinfo }) => {
     return JSON.parse(jsonPayload);
   }
 
+  const checkToken = localStorage.getItem("token");
+
   useEffect(() => {
-    if (userinfo !== null) {
-      setUser(parseJwt(userinfo));
+    if (checkToken !== "" && checkToken !== null) {
+      let a = parseJwt(checkToken);
+      setUser(a);
       setCheckuser(false);
-    } else {
-      console.log(userinfo);
     }
-  }, [userinfo]);
+  }, [checkToken]);
 
   return (
     <nav>
       <div className="nav__box">
-        <div className="nav__searchbar">
-          <SearchIcon className="SearchIcon" />
-          <input placeholder="Search" type="text" />
-        </div>
-        <div className="nav__navButtons">
-          <Button className="nav__Buttons">
-            <NavLink exact to="/" className="link__a" activeClassName="active1">
-              Home
-            </NavLink>
-          </Button>
-          <Button id="explore" className="nav__Buttons">
-            <NavLink
-              to="/explore"
-              className="link__a"
-              activeClassName="active1"
-            >
-              Explore
-            </NavLink>
-          </Button>
-          {checkuser && (
-            <Button id="login" className="nav__Buttons">
+        <span className="nav__searchbox">
+          <SearchIcon className="searchIcon" />
+          <input label="search" placeholder="Search" type="text" />
+        </span>
+        <ul>
+          <li>
+            <Button className="nav__btn">
               <NavLink
-                to="/login"
-                className="link__a"
-                activeClassName="active1"
+                exact
+                to="/"
+                className="btn__links"
+                activeClassName="active__link"
               >
-                Login
+                Home
               </NavLink>
             </Button>
-          )}
-          {!checkuser && (
-            <Button id="login" className="nav__Buttons">
+          </li>
+          <li>
+            <Button className="nav__btn">
               <NavLink
-                to="/profile"
-                className="link__a"
-                activeClassName="active1"
+                exact
+                to="/explore"
+                className="btn__links"
+                activeClassName="active__link"
               >
-                {`${user.username}`}
+                Explore
               </NavLink>
             </Button>
-          )}
-        </div>
+          </li>
+          <li>
+            {checkuser && (
+              <Button className="nav__btn">
+                <NavLink
+                  exact
+                  to="/login"
+                  className="btn__links"
+                  activeClassName="active__link"
+                >
+                  Login / Signup
+                </NavLink>
+              </Button>
+            )}
+            {!checkuser && (
+              <Button className="nav__btn">
+                <NavLink
+                  exact
+                  to="/profile"
+                  className="btn__links"
+                  activeClassName="active__link"
+                >
+                  <span className="username">{user.username}</span>
+                </NavLink>
+              </Button>
+            )}
+          </li>
+        </ul>
       </div>
     </nav>
   );

@@ -1,228 +1,229 @@
-.login {
-    height: 86.63vh;
-    width: 100vw;
-    max-width: 100%;
-    background-color: var(--theme-bg);
-    display: grid;
-    grid-template-areas: ".col1 .col2";
-    grid-template-columns: 60% 40%;
-}
+ .login {
+     height: 86.63vh;
+     width: 100vw;
+     max-width: 100%;
+     background-color: var(--theme-bg);
+     display: grid;
+     grid-template-areas: ".col1 .col2";
+     grid-template-columns: 60% 40%;
+ }
 
-.column1 {
-    height: 100%;
-    overflow: hidden;
-    display: grid;
-    place-items: center;
-}
 
-.column1 img {
-    height: 120%;
-}
+ .column1 {
+     height: 100%;
+     overflow: hidden;
+     display: grid;
+     place-items: center;
+ }
 
-.column2 {
-    height: 100%;
-    display: grid;
-    place-items: center;
-}
+ .column1 img {
+     height: 120%;
+ }
 
-/* Login Form Starts */
+ .column2 {
+     height: 100%;
+     display: grid;
+     place-items: center;
+ }
 
-/* Form HeadeAche Starts */
+ /* Login Form Starts */
 
-.form {
-    height: 27rem;
-    width: 25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+ /* Form HeadeAche Starts */
 
-.form__div {
-    height: 70%;
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-}
+ .form {
+     height: 27rem;
+     width: 25rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+ }
 
-.form__groupContainer {
-    height: 60%;
-    width: 100%;
-}
+ .form__div {
+     height: 70%;
+     width: 100%;
+     display: flex;
+     align-items: flex-start;
+     flex-direction: column;
+ }
 
-.form__container {
-    height: 90%;
-    width: 100%;
-    background-color: antiquewhite;
-    position: relative;
-    border-radius: 12px;
-}
+ .form__groupContainer {
+     height: 60%;
+     width: 100%;
+ }
 
-.form__container input {
-    height: 100%;
-    width: 100%;
-    background-color: rgba(251, 122, 28, 5%);
-    color: #FB7A1C;
-    font-weight: 600;
-    padding: 2rem 0 .5rem 1rem;
-    outline: none;
-    border: none;
-    font-size: 1.75rem;
-}
+ .form__container {
+     height: 90%;
+     width: 100%;
+     background-color: antiquewhite;
+     position: relative;
+     border-radius: 12px;
+ }
 
-.form__container label {
-    position: absolute;
-    bottom: 1rem;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
+ .form__container input {
+     height: 100%;
+     width: 100%;
+     background-color: rgba(251, 122, 28, 5%);
+     color: #FB7A1C;
+     font-weight: 600;
+     padding: 2rem 0 .5rem 1rem;
+     outline: none;
+     border: none;
+     font-size: 1.75rem;
+ }
 
-.form__container label::after {
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    bottom: 0px;
-    left: 0px;
-    transition: all .3s ease;
-}
+ .form__container label {
+     position: absolute;
+     bottom: 1rem;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     pointer-events: none;
+ }
 
-.contentName {
-    font-size: 1.8rem;
-    position: absolute;
-    bottom: .5rem;
-    left: 1rem;
-    transition: all .3s ease;
-}
+ .form__container label::after {
+     content: '';
+     position: absolute;
+     height: 100%;
+     width: 100%;
+     bottom: 0px;
+     left: 0px;
+     transition: all .3s ease;
+ }
 
-.form__container input:focus+.labelName .contentName,
-.form__container input:valid+.labelName .contentName {
-    transform: translateY(-250%);
-    font-size: 1rem;
-    color: #595f6e;
-}
+ .contentName {
+     font-size: 1.8rem;
+     position: absolute;
+     bottom: .5rem;
+     left: 1rem;
+     transition: all .3s ease;
+ }
 
-/* Form headeache Ends */
+ .form__container input:focus+.labelName .contentName,
+ .form__container input:valid+.labelName .contentName {
+     transform: translateY(-250%);
+     font-size: 1rem;
+     color: #595f6e;
+ }
 
-.login__btn {
-    background-color: var(--primary) !important;
-    color: whitesmoke !important;
-    width: 100% !important;
-    height: 5rem !important;
-}
+ /* Form headeache Ends */
 
-.already {
-    margin-top: 4rem;
-    font-size: 16px;
-}
+ .login__btn {
+     color: var(--primary) !important;
+     width: 100% !important;
+     height: 5rem !important;
+     border: 1px solid var(--primary) !important;
+ }
 
-.already span {
-    color: var(--primary);
-    text-decoration: underline;
-    cursor: pointer;
-}
+ .already {
+     margin-top: 4rem;
+     font-size: 16px;
+ }
 
-/* Login Form Ends */
+ .already span {
+     color: var(--primary);
+     text-decoration: underline;
+     cursor: pointer;
+ }
 
-/* Signup Form starts */
+ /* Login Form Ends */
 
-.form__1 {
-    height: 30rem;
-    width: 25rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+ /* Signup Form starts */
 
-.form__div__1 {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-}
+ .form__1 {
+     height: 31rem;
+     width: 25rem;
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+     flex-direction: column;
+ }
 
-.form__groupContainer__1 {
-    height: 40%;
-    width: 100%;
-}
+ .form__div__1 {
+     height: 100%;
+     width: 100%;
+     display: flex;
+     align-items: flex-start;
+     flex-direction: column;
+ }
 
-.form__container__1 {
-    height: 90%;
-    width: 100%;
-    background-color: antiquewhite;
-    position: relative;
-    border-radius: 12px;
-}
+ .form__groupContainer__1 {
+     height: 40%;
+     width: 100%;
+ }
 
-.form__container__1 input {
-    height: 100%;
-    width: 100%;
-    background-color: rgba(251, 122, 28, 5%);
-    color: #FB7A1C;
-    font-weight: 600;
-    padding: 2rem 0 .5rem 1rem;
-    outline: none;
-    border: none;
-    font-size: 1.75rem;
-}
+ .form__container__1 {
+     height: 90%;
+     width: 100%;
+     background-color: antiquewhite;
+     position: relative;
+     border-radius: 12px;
+ }
 
-.form__container__1 label {
-    position: absolute;
-    bottom: 1rem;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
+ .form__container__1 input {
+     height: 100%;
+     width: 100%;
+     background-color: rgba(251, 122, 28, 5%);
+     color: #FB7A1C;
+     font-weight: 600;
+     padding: 2rem 0 .5rem 1rem;
+     outline: none;
+     border: none;
+     font-size: 1.75rem;
+ }
 
-.form__container__1 label::after {
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    bottom: 0px;
-    left: 0px;
-    transition: all .3s ease;
-}
+ .form__container__1 label {
+     position: absolute;
+     bottom: 1rem;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     pointer-events: none;
+ }
 
-.contentName__1 {
-    font-size: 1.8rem;
-    position: absolute;
-    bottom: .5rem;
-    left: 1rem;
-    transition: all .3s ease;
-}
+ .form__container__1 label::after {
+     content: '';
+     position: absolute;
+     height: 100%;
+     width: 100%;
+     bottom: 0px;
+     left: 0px;
+     transition: all .3s ease;
+ }
 
-.form__container__1 input:focus+.labelName__1 .contentName__1,
-.form__container__1 input:valid+.labelName__1 .contentName__1 {
-    transform: translateY(-250%);
-    font-size: 1rem;
-    color: #595f6e;
-}
+ .contentName__1 {
+     font-size: 1.8rem;
+     position: absolute;
+     bottom: .5rem;
+     left: 1rem;
+     transition: all .3s ease;
+ }
 
-/* Form headeache Ends */
+ .form__container__1 input:focus+.labelName__1 .contentName__1,
+ .form__container__1 input:valid+.labelName__1 .contentName__1 {
+     transform: translateY(-250%);
+     font-size: 1rem;
+     color: #595f6e;
+ }
 
-.login__btn__1 {
-    background-color: var(--primary) !important;
-    color: whitesmoke !important;
-    width: 100% !important;
-    height: 5rem !important;
-}
+ /* Form headeache Ends */
 
-.already__1 {
-    margin-top: 3rem;
-    font-size: 16px;
-}
+ .login__btn__1 {
+     color: var(--primary) !important;
+     width: 100% !important;
+     height: 5rem !important;
+     border: 1px solid var(--primary) !important;
+ }
 
-.already__1 span {
-    color: var(--primary);
-    text-decoration: underline;
-    cursor: pointer;
-}
+ .already__1 {
+     margin-top: 3rem;
+     font-size: 16px;
+ }
 
-/* Signup Form ends */
+ .already__1 span {
+     color: var(--primary);
+     text-decoration: underline;
+     cursor: pointer;
+ }
+
+ /* Signup Form ends  */

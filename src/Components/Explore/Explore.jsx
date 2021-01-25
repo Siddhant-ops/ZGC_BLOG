@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Explore.css";
 import axios from "axios";
-import InfinteScroll from "react-infinite-scroll-component";
 import { Button } from "@material-ui/core";
 import BlogCard from "../Blog_Cards/BlogCard";
 import img from "./Saly-2.png";
@@ -17,57 +16,44 @@ const Explore = () => {
         setAllblogs(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [page]);
 
-  const getBlogs = async () => {
-    await axios
-      .get(`http://localhost/api/blog/${page + 1}`)
-      .then((res) => setAllblogs(allblogs.concat(res.data)))
-      .catch((err) => console.log(err));
-  };
+  // const getBlogs = async () => {
+  //   await axios
+  //     .get(`http://localhost/api/blog/${page + 1}`)
+  //     .then((res) => setAllblogs(allblogs.concat(res.data)))
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <div className="explore">
-      <div className="E__row1">
-        <div className="E__row1__col1">
-          <div className="E__row1__col1__row1">
-            <h1>Explore</h1>
-            <h4>
-              Discover Wonderful, Thoughtful & Educational blogs by wonderful
-              community of kES Shroff college
-            </h4>
-          </div>
-          <div className="E__row1__col1__row2">
-            <h4>Search by tags :</h4>
-            <div className="E__row1__col1__row2__btnGroup">
-              <Button className="tag__btn">Development</Button>
-              <Button className="tag__btn">Productivity</Button>
-              <Button className="tag__btn">Desgin</Button>
-              <Button className="tag__btn">Photography</Button>
-              <Button className="tag__btn">Marketing</Button>
-              <Button className="tag__btn">Gaming</Button>
-            </div>
+      <section className="explore__sec1">
+        <div className="welcome__col1">
+          <h1>Explore</h1>
+          <h4>
+            Discover Wonderful, Thoughtful & Educational Blogs By Wonderful
+            Community Of KES Shroff College
+          </h4>
+          <div className="search__group">
+            <h5>Search by tags :</h5>
+            <span className="buttons__grp">
+              <Button className="explore__btn active__btn">Development</Button>
+              <Button className="explore__btn">Productivity</Button>
+              <Button className="explore__btn">Photography</Button>
+              <Button className="explore__btn">Marketing</Button>
+              <Button className="explore__btn">Gaming</Button>
+            </span>
           </div>
         </div>
-        <div className="E__row1__col2">
-          <img src={img} alt="" />
+        <div className="welcome__col2">
+          <img src={img} alt="Floating Kid" />
         </div>
-        {/* <button onClick={getBlogs}>GETBLOGS</button> */}
-      </div>
-      <div className="E__row2">
-        {/* <InfinteScroll
-          dataLength={allblogs.length}
-          next={getBlogs()}
-          loader={<h1>Loading.....</h1>}
-        > */}
+      </section>
+      <section className="explore__sec2">
         {allblogs.map((blog) => (
           <BlogCard key={blog.title} title={blog.title} author={blog.author} />
         ))}
-        {/* </InfinteScroll> */}
-        {/* <BlogCard title="uhvsvufvs" author="haccfcusccfha" />
-        <BlogCard title="uhvsvufvs" author="haccfcusccfha" />
-        <BlogCard title="uhvsvufvs" author="haccfcusccfha" /> */}
-      </div>
+      </section>
     </div>
   );
 };
