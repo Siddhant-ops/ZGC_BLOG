@@ -1,53 +1,132 @@
-import React from "react";
+import { Button, IconButton } from "@material-ui/core";
+import { ArrowRightAlt, DeleteOutline } from "@material-ui/icons";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useStateValue } from "../../UserContext/Stateprovider";
+import Comment from "../Comment/Comment";
 import "./blog.css";
 
-const Blog = () => {
+const Blog = (props) => {
+  // userInfo
+  const [{ userInfo }, dispatch] = useStateValue();
+
+  // Data for blog
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [comments, setComments] = useState([]);
+  const [content, setContent] = useState("");
+  const [blogid, setBlogid] = useState("");
+
+  // writting comment
+  const [writecomment, setWritecomment] = useState("");
+  const [checkUser, setCheckUser] = useState(false);
+
+  useEffect(() => {
+    setTitle(props.location.state.title);
+    setAuthor(props.location.state.author);
+    setContent(props.location.state.content);
+    setBlogid(props.location.state.id);
+    if (userInfo !== null) {
+      setCheckUser(true);
+    }
+
+    if (blogid !== "" && blogid !== undefined) {
+      axios
+        .get(`http://localhost/api/comment/b/${blogid}`)
+        .then((res) => {
+          setComments(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [
+    blogid,
+    userInfo,
+    props.location.state.title,
+    props.location.state.author,
+    props.location.state.content,
+    props.location.state.id,
+    writecomment,
+  ]);
+
+  const postComment = async () => {
+    if (userInfo !== null) {
+      var data = {
+        blog_id: blogid,
+        username: userInfo.username,
+        content: writecomment,
+      };
+
+      const checkToken = localStorage.getItem("token");
+
+      var config = {
+        headers: {
+          Authorization: `Bearer ${checkToken}`,
+        },
+      };
+
+      await axios
+        .post("http://localhost/api/comment/create", data, config)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+      setWritecomment("");
+    }
+  };
+
   return (
-    <div className="wrapper">
-      <nav></nav>
+    <div className="Blogwrapper">
       <div className="blog">
         <p>15 MIN READ</p>
-        <h2>Learn Svelte in 15 minutes As Well As Some Rest API</h2>
-        <h5>By Mihir Sodawalla</h5>
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum. Consectetur
-          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-          fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-          sunt in culpa qui officia deserunt mollit anim id est laborum. Quas
-          consectetur adipiscing elit audiam virtute ut, case utamur fuisset eam
-          ut, iisque accommodare an eam. Reque blandit qui eu, cu vix nonumy
-          volumus. Legendos intellegam id usu, vide oporteat vix eu, id illud
-          principes has. Nam tempor utamur gubergren no.
-        </span>
+        <h2>{title}</h2>
+        <h5>By {author}</h5>
+        <span>{content}</span>
       </div>
       <div className="comments">
         <h3>Comments</h3>
-        <input type="text" placeholder="Write A Comment" />
-        <button className="primary_btn">Submit Comment</button>
+        {checkUser ? (
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              postComment();
+            }}
+          >
+            <input
+              value={writecomment}
+              onChange={(e) => {
+                setWritecomment(e.target.value);
+              }}
+              type="text"
+              placeholder="Write A Comment"
+            />
+            <Button
+              disabled={writecomment === ""}
+              type="submit"
+              className="primary_btn"
+            >
+              Submit Comment
+            </Button>
+          </form>
+        ) : (
+          <div className="please__login">
+            <h4>Please Login in order to comment on Blogs</h4>
+            <Button className="primary_btn">
+              Go to Login <ArrowRightAlt />
+            </Button>
+          </div>
+        )}
         <div className="blog_comments">
-          <ul>
-            <li>
-              <p>Yash Shah</p>
-              <h4>Amazing Content!</h4>
-            </li>
-            <li>
-              <p>ShifaliAm</p>
-              <h4>Zing Zing, Amazing!</h4>
-            </li>
-            <li>
-              <p>FenaJ</p>
-              <h4>Nicely Explained.</h4>
-            </li>
-          </ul>
+          {comments.length === 0 ? (
+            <h3>No Comments yet</h3>
+          ) : (
+            comments.map((comment) => (
+              <Comment
+                key={comment._id}
+                comment_id={comment._id}
+                blog_id={blogid}
+                username={comment.username}
+                content={comment.content}
+              />
+            ))
+          )}
         </div>
       </div>
     </div>

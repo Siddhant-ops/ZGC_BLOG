@@ -26,6 +26,10 @@ footer {
     flex-wrap: wrap;
 }
 
+.no__Underline {
+    text-decoration: none;
+}
+
 .site__links__p {
     color: var(--primary);
     width: fit-content;

@@ -28,16 +28,12 @@ const Profile = ({ userInfo }) => {
     return JSON.parse(jsonPayload);
   }
 
-  let c = localStorage.getItem("token");
-
   useEffect(() => {
-    let a = localStorage.getItem("token");
-    if (a !== null) {
-      let u = parseJwt(a);
+    if (userInfo !== null) {
+      let u = parseJwt(userInfo);
       axios
         .get(`http://localhost/api/blog/user/${u.username}`)
         .then((res) => {
-          console.log(res.data);
           setUserblogs(res.data);
           setUser(u);
         })
@@ -45,15 +41,20 @@ const Profile = ({ userInfo }) => {
     } else {
       history.push("/login");
     }
-  }, [c, history]);
+  }, [userInfo, history]);
 
   return (
     <div className="profile">
-      <section>
+      <section className="section__Profile">
         <div className="profile__col1">
           <span className="profile__col1__Container">
             <img src={profilepic} alt="some kid walking" />
-            <Button className="createBlog__btn">
+            <Button
+              onClick={() => {
+                history.push("/createblog");
+              }}
+              className="createBlog__btn"
+            >
               Create Blog <ArrowRightAltOutlinedIcon />
             </Button>
           </span>
@@ -79,6 +80,8 @@ const Profile = ({ userInfo }) => {
                 userblogs.map((blog) => (
                   <BlogCard
                     key={blog.title}
+                    id={blog._id}
+                    profile={true}
                     author={blog.author}
                     title={blog.title}
                     content={blog.content}

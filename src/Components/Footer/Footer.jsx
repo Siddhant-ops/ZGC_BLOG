@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useStateValue } from "../../UserContext/Stateprovider";
 import "./Footer.css";
 import logo from "./Group 225.png";
 
 const Footer = () => {
+  const [{ userInfo }, dispatch] = useStateValue();
+  const [checkUser, setCheckUser] = useState(false);
+
+  useEffect(() => {
+    if (userInfo !== null) {
+      setCheckUser(true);
+      console.log(userInfo);
+    }
+  }, [userInfo]);
+
   return (
     <footer>
       <div className="footer__main">
@@ -22,10 +34,22 @@ const Footer = () => {
         <div className="footer__col2">
           <h4>Quick Links</h4>
           <span className="site__links">
-            <h5 className="site__links__p">/home</h5>
-            <h5 className="site__links__p">/search</h5>
-            <h5 className="site__links__p">/login</h5>
-            <h5 className="site__links__p">/explore</h5>
+            <Link className="no__Underline" to="/">
+              <h5 className="site__links__p">/home</h5>
+            </Link>
+            {checkUser ? (
+              <Link className="no__Underline" to="/profile">
+                <h5 className="site__links__p">/profile</h5>
+              </Link>
+            ) : (
+              <Link className="no__Underline" to="/login">
+                <h5 className="site__links__p">/login</h5>
+              </Link>
+            )}
+
+            <Link className="no__Underline" to="/explore">
+              <h5 className="site__links__p">/explore</h5>
+            </Link>
           </span>
         </div>
         <div className="footer__col3">

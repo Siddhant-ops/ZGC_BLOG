@@ -1,0 +1,18 @@
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .welcome__section {
+        grid-template-rows: 50% 50%;
+        grid-template-columns: none;
+    }
+
+    .welcome__col2 {
+        grid-row: 1/2;
+        padding: 1rem 0;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .welcome__col2 img {
+        height: 100%;
+    }
+}

@@ -1,0 +1,17 @@
+.comment__Container {
+    border: 1px solid var(--primary);
+    border-radius: 2rem;
+    min-height: 15rem;
+    padding: 1.5rem 2.5rem;
+}
+
+.comment__top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment__Container h5 {
+    color: var(--primary);
+}

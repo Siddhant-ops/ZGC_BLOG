@@ -60,12 +60,14 @@ ul {
     padding: 1rem 2rem !important;
     text-transform: none !important;
     font-size: 1.33rem !important;
+    text-decoration: none;
 }
 
 .active__link {
     border: none !important;
     color: #3d3d3d !important;
     font-weight: bold !important;
+    text-decoration: underline;
 }
 
 .username {

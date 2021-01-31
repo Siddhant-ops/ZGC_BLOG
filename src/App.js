@@ -9,6 +9,9 @@ import Explore from "./Components/Explore/Explore";
 import { useEffect, useState } from "react";
 import Footer from "./Components/Footer/Footer";
 import { useStateValue } from "./UserContext/Stateprovider";
+import Blog from "./Components/Blog/Blog";
+import { actionTypes } from "./UserContext/reducer";
+import CreateBlog from "./Components/CreateBlog/CreateBlog";
 
 function App() {
   const [{ userInfo }, dispatch] = useStateValue();
@@ -17,12 +20,36 @@ function App() {
 
   const checkToken = localStorage.getItem("token");
 
+  function parseJwt(token) {
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+
+    return JSON.parse(jsonPayload);
+  }
+
   useEffect(() => {
-    if (checkToken !== "") {
+    if (checkToken !== "" && checkToken !== null) {
+      var Tokeniat = new Date(parseJwt(checkToken).iat);
+      var Tokenexp = new Date(parseJwt(checkToken).exp);
+      console.log(+Tokenexp >= +Tokeniat);
       setUser(localStorage.getItem("token"));
       setCheckuser(true);
     }
-  }, [userInfo]);
+    if (userInfo === null && checkToken === user && checkToken !== null) {
+      dispatch({
+        type: actionTypes.SET_USER,
+        userInfo: parseJwt(checkToken),
+      });
+    }
+  }, [userInfo, user]);
   return (
     <div>
       <Nav userinfo={user} />
@@ -34,7 +61,9 @@ function App() {
             <Profile userInfo={user} />
           </Route>
         )}
-        <Route path="/login" component={Login} />
+        {checkuser && <Route path={"/blog/:blogname"} component={Blog} />}
+        {checkuser && <Route path={"/createblog"} component={CreateBlog} />}
+        {!checkuser && <Route path="/login" component={Login} />}
         <Route path="" component={Err404} />
       </Switch>
       <Footer />

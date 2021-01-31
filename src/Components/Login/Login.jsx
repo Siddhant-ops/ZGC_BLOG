@@ -8,7 +8,7 @@ import { useStateValue } from "../../UserContext/Stateprovider";
 import { actionTypes } from "../../UserContext/reducer";
 
 const Login = () => {
-  const [{}, dispatch] = useStateValue();
+  const [{ userInfo }, dispatch] = useStateValue();
   const history = useHistory();
   const [form, setForm] = useState(true);
 

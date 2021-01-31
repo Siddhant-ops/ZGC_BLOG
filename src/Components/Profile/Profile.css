@@ -1,4 +1,4 @@
-section {
+.section__Profile {
     width: 100%;
     display: grid;
     grid-template-columns: 40% 60%;

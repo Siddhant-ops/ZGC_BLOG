@@ -15,6 +15,10 @@ body {
   background-color: var(--background);
 }
 
+::selection {
+  background-color: #ff9a51ad;
+}
+
 html {
   font-size: 80%;
 }
@@ -59,6 +63,7 @@ a {
 
 body::-webkit-scrollbar {
   display: none;
+  background-color: #FCF8F5;
 }
 
 code {

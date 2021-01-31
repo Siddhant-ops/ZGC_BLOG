@@ -1,0 +1,37 @@
+.section__CreateBlog {
+    padding: 2rem 5rem 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.Blog__content {
+    align-self: center;
+    width: 80%;
+    padding: 1rem 5rem;
+}
+
+.Blog__content input {
+    background-color: #00000000;
+    outline: none;
+    border: none;
+    font-size: 5rem;
+    color: #333333;
+    width: 100%;
+    padding: 1.5rem 0;
+}
+
+.Blog__main {
+    min-height: 70vh;
+    background-color: rgba(251, 122, 81, 5%);
+    padding: 1rem 3rem 3rem;
+    border-radius: 2rem;
+}
+
+.Btn__Container {
+    background-color: white;
+}
+
+.DraftEditor-root {
+    background-color: aqua;
+    font-size: 2rem;
+}
