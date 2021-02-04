@@ -11,7 +11,6 @@ const Footer = () => {
   useEffect(() => {
     if (userInfo !== null) {
       setCheckUser(true);
-      console.log(userInfo);
     }
   }, [userInfo]);
 

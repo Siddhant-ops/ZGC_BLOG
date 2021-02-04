@@ -1,16 +1,16 @@
+import { useEffect, useState } from "react";
+import { Switch, Route } from "react-router-dom";
 import "./App.css";
+import { useStateValue } from "./UserContext/Stateprovider";
+import { actionTypes } from "./UserContext/reducer";
 import Nav from "./Components/Nav/Nav";
 import Welcome from "./Components/Welcome/Welcome";
-import { Switch, Route } from "react-router-dom";
 import Login from "./Components/Login/Login";
 import Profile from "./Components/Profile/Profile";
 import Err404 from "./Components/404/Err404";
 import Explore from "./Components/Explore/Explore";
-import { useEffect, useState } from "react";
 import Footer from "./Components/Footer/Footer";
-import { useStateValue } from "./UserContext/Stateprovider";
 import Blog from "./Components/Blog/Blog";
-import { actionTypes } from "./UserContext/reducer";
 import CreateBlog from "./Components/CreateBlog/CreateBlog";
 
 function App() {
@@ -36,32 +36,52 @@ function App() {
   }
 
   useEffect(() => {
-    if (checkToken !== "" && checkToken !== null) {
-      var Tokeniat = new Date(parseJwt(checkToken).iat);
-      var Tokenexp = new Date(parseJwt(checkToken).exp);
-      console.log(+Tokenexp >= +Tokeniat);
-      setUser(localStorage.getItem("token"));
-      setCheckuser(true);
+    if (
+      checkToken === "" ||
+      checkToken === null ||
+      checkToken === undefined ||
+      checkToken === "undefined"
+    ) {
+      setUser(null);
+      setCheckuser(false);
+    }
+  }, [checkToken]);
+
+  useEffect(() => {
+    if (
+      checkToken !== "" &&
+      checkToken !== null &&
+      checkToken !== undefined &&
+      checkToken !== "undefined"
+    ) {
+      var Tokenexp = new Date(0);
+      Tokenexp.setUTCSeconds(parseJwt(checkToken).exp);
+      if (Date.now() < +Tokenexp) {
+        setUser(localStorage.getItem("token"));
+        setCheckuser(true);
+      }
     }
     if (userInfo === null && checkToken === user && checkToken !== null) {
-      dispatch({
-        type: actionTypes.SET_USER,
-        userInfo: parseJwt(checkToken),
-      });
+      if (Date.now() <= +Tokenexp) {
+        dispatch({
+          type: actionTypes.SET_USER,
+          userInfo: parseJwt(checkToken),
+        });
+      }
     }
-  }, [userInfo, user]);
+  }, [userInfo, user, checkToken, dispatch]);
   return (
     <div>
-      <Nav userinfo={user} />
+      <Nav userObj={user} />
       <Switch>
         <Route path="/" exact component={Welcome} />
         <Route path="/explore" exact component={Explore} />
         {checkuser && (
           <Route path="/profile">
-            <Profile userInfo={user} />
+            <Profile userObj={user} />
           </Route>
         )}
-        {checkuser && <Route path={"/blog/:blogname"} component={Blog} />}
+        <Route path={"/blog/:blogname"} component={Blog} />
         {checkuser && <Route path={"/createblog"} component={CreateBlog} />}
         {!checkuser && <Route path="/login" component={Login} />}
         <Route path="" component={Err404} />

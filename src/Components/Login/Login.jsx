@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button } from "@material-ui/core";
+import React, { useEffect, useLayoutEffect, useState } from "react";
+import { Button, TextField } from "@material-ui/core";
 import "./Login.css";
 import mobile from "./Saly-12.png";
 import axios from "axios";
@@ -20,6 +20,9 @@ const Login = () => {
   const [username, setusername] = useState("");
   const [email, setEmail] = useState("");
   const [passwd, setPasswd] = useState("");
+
+  // Error Handling
+  var forward = true;
 
   function parseJwt(token) {
     var base64Url = token.split(".")[1];
@@ -45,17 +48,30 @@ const Login = () => {
     await axios
       .post("http://localhost/api/auth/local/login", data)
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        dispatch({
-          type: actionTypes.SET_USER,
-          userInfo: parseJwt(res.data.token),
-        });
+        if (res.status === 200) {
+          localStorage.setItem("token", res.data.token);
+          dispatch({
+            type: actionTypes.SET_USER,
+            userInfo: parseJwt(res.data.token),
+          });
+          forward = true;
+        } else {
+          forward = false;
+        }
       })
-      .catch((err) => console.log(err));
+      .catch(function (error) {
+        // Error
+        if (error.response) {
+          forward = false;
+          document.querySelector(".invalid").style.display = "block";
+        }
+      });
 
-    setLoginEmail("");
-    setLoginPasswd("");
-    history.push("/profile");
+    if (forward) {
+      setLoginEmail("");
+      setLoginPasswd("");
+      history.push("/profile");
+    }
   };
 
   // Signup Function
@@ -69,17 +85,30 @@ const Login = () => {
     await axios
       .post("http://localhost/api/auth/local/register", data)
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        dispatch({
-          type: actionTypes.SET_USER,
-          userInfo: parseJwt(res.data.token),
-        });
+        if (res.status === 200) {
+          localStorage.setItem("token", res.data.token);
+          dispatch({
+            type: actionTypes.SET_USER,
+            userInfo: parseJwt(res.data.token),
+          });
+          forward = true;
+        } else {
+          forward = false;
+        }
       })
-      .catch((err) => console.log(err));
-    setEmail("");
-    setPasswd("");
-    setusername("");
-    history.push("/profile");
+      .catch(function (error) {
+        // Error
+        if (error.response) {
+          forward = false;
+          document.querySelector(".invalid").style.display = "block";
+        }
+      });
+    if (forward) {
+      setEmail("");
+      setPasswd("");
+      setusername("");
+      history.push("/profile");
+    }
   };
 
   const loginDisable = () => {
@@ -99,66 +128,56 @@ const Login = () => {
 
   return (
     <div className="login">
-      <div className="column1">
-        <img src={mobile} alt="" />
+      <div className="login__Col1">
+        <img src={mobile} alt="Some random Mobile" />
       </div>
-      <div className="column2">
+      <div className="login__Col2">
         {form ? (
-          <div className="form">
-            <div className="form__div">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  login();
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              login();
+            }}
+            className="login__form"
+          >
+            <h5 className="invalid xyz-in" xyz="fade down-5 stagger">
+              Invalid Username or Password
+            </h5>
+            <div className="input__Container">
+              <TextField
+                required
+                autoComplete="true"
+                value={loginEmail}
+                onChange={(e) => {
+                  setLoginEmail(e.target.value);
                 }}
-              >
-                <div className="form__groupContainer">
-                  <div className="form__container">
-                    <input
-                      autoFocus
-                      onChange={(e) => {
-                        setLoginEmail(e.target.value);
-                      }}
-                      value={loginEmail}
-                      type="email"
-                      name="Email"
-                      autoComplete="off"
-                      required
-                    />
-                    <label htmlFor="Email" className="labelName">
-                      <span className="contentName">Email</span>
-                    </label>
-                  </div>
-                </div>
-                <div className="form__groupContainer">
-                  <div className="form__container">
-                    <input
-                      onChange={(e) => {
-                        setLoginPasswd(e.target.value);
-                      }}
-                      value={loginPasswd}
-                      id="passwd"
-                      type="password"
-                      name="Password"
-                      autoComplete="off"
-                      required
-                    />
-                    <label htmlFor="Password" className="labelName">
-                      <span className="contentName">Password</span>
-                    </label>
-                  </div>
-                </div>
-                <Button
-                  disabled={loginDisable()}
-                  type="submit"
-                  className="login__btn"
-                >
-                  Login
-                </Button>
-              </form>
+                type="email"
+                color="primary"
+                label="Email"
+              />
             </div>
+            <div className="input__Container">
+              <TextField
+                required
+                autoComplete="true"
+                value={loginPasswd}
+                onChange={(e) => {
+                  setLoginPasswd(e.target.value);
+                }}
+                color="primary"
+                type="password"
+                label="Password"
+              />
+            </div>
+            <Button
+              disabled={loginDisable()}
+              type="submit"
+              className="login__btn"
+            >
+              Login
+            </Button>
             <p className="already">
-              Already have an Account ?{" "}
+              Don't have an Account ?{" "}
               <span
                 onClick={() => {
                   setForm(false);
@@ -167,79 +186,65 @@ const Login = () => {
                 Signup
               </span>
             </p>
-          </div>
+          </form>
         ) : (
-          <div className="form__1">
-            <div className="form__div__1">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  signup();
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              signup();
+            }}
+            className="login__form"
+          >
+            <h5 className="invalid xyz-in" xyz="fade down-5 stagger">
+              Invalid Username or Password
+            </h5>
+            <div className="input__Container">
+              <TextField
+                required
+                autoComplete="true"
+                value={username}
+                onChange={(e) => {
+                  setusername(e.target.value);
                 }}
-              >
-                <div className="form__groupContainer__1">
-                  <div className="form__container__1">
-                    <input
-                      autoFocus
-                      onChange={(e) => {
-                        setusername(e.target.value);
-                      }}
-                      value={username}
-                      type="text"
-                      name="Username"
-                      autoComplete="off"
-                      required
-                    />
-                    <label htmlFor="Username" className="labelName__1">
-                      <span className="contentName__1">Username</span>
-                    </label>
-                  </div>
-                </div>
-                <div className="form__groupContainer__1">
-                  <div className="form__container__1">
-                    <input
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                      }}
-                      value={email}
-                      type="email"
-                      name="Email"
-                      autoComplete="off"
-                      required
-                    />
-                    <label htmlFor="Email" className="labelName__1">
-                      <span className="contentName__1">Email</span>
-                    </label>
-                  </div>
-                </div>
-                <div className="form__groupContainer__1">
-                  <div className="form__container__1">
-                    <input
-                      onChange={(e) => {
-                        setPasswd(e.target.value);
-                      }}
-                      value={passwd}
-                      id="passwd"
-                      type="password"
-                      name="Password"
-                      autoComplete="off"
-                      required
-                    />
-                    <label htmlFor="Password" className="labelName__1">
-                      <span className="contentName__1">Password</span>
-                    </label>
-                  </div>
-                </div>
-                <Button
-                  disabled={SigninDisable()}
-                  type="submit"
-                  className="login__btn__1"
-                >
-                  Signup
-                </Button>
-              </form>
+                type="text"
+                color="primary"
+                label="Username"
+              />
             </div>
-            <p className="already__1">
+            <div className="input__Container">
+              <TextField
+                required
+                autoComplete="true"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                color="primary"
+                type="email"
+                label="Email"
+              />
+            </div>
+            <div className="input__Container">
+              <TextField
+                required
+                autoComplete="true"
+                value={passwd}
+                onChange={(e) => {
+                  setPasswd(e.target.value);
+                }}
+                color="primary"
+                type="password"
+                label="Password"
+              />
+            </div>
+            <Button
+              disabled={SigninDisable()}
+              type="submit"
+              className="login__btn"
+            >
+              Signup
+            </Button>
+            <p className="already">
               Already have an Account ?{" "}
               <span
                 onClick={() => {
@@ -247,10 +252,9 @@ const Login = () => {
                 }}
               >
                 Login
-                {/* <Link to="/login">Login</Link> */}
               </span>
             </p>
-          </div>
+          </form>
         )}
       </div>
     </div>

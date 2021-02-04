@@ -39,7 +39,7 @@ const BlogCard = ({ id, profile, title, author, content, comments }) => {
   };
 
   return (
-    <div className="blog__cards  xyz-in" xyz="fade up-5 stagger">
+    <div className="blog__cards xyz-in" xyz="fade up-5 stagger">
       {profile && userInfo !== null ? (
         <div className="blogCard__top">
           <h5 className="read__time">15 mins read</h5>

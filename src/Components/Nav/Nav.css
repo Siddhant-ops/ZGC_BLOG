@@ -41,7 +41,7 @@ nav {
         monospace;
 }
 
-ul {
+.Nav__list {
     list-style: none;
     height: 70%;
     flex: .4;

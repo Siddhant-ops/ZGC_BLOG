@@ -3,8 +3,10 @@ import "./Nav.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useStateValue } from "../../UserContext/Stateprovider";
 
-const Nav = ({ userinfo }) => {
+const Nav = ({ userObj }) => {
+  const [{ userInfo }, dispatch] = useStateValue();
   const [user, setUser] = useState([]);
   const [checkuser, setCheckuser] = useState(true);
 
@@ -26,12 +28,21 @@ const Nav = ({ userinfo }) => {
   const checkToken = localStorage.getItem("token");
 
   useEffect(() => {
-    if (checkToken !== "" && checkToken !== null) {
+    if (
+      checkToken !== "" &&
+      checkToken !== null &&
+      checkToken !== undefined &&
+      checkToken !== "undefined"
+    ) {
       let a = parseJwt(checkToken);
       setUser(a);
       setCheckuser(false);
     }
-  }, [checkToken]);
+    if (userInfo === null) {
+      setCheckuser(true);
+      setUser([]);
+    }
+  }, [checkToken, userInfo]);
 
   return (
     <nav>
@@ -40,7 +51,7 @@ const Nav = ({ userinfo }) => {
           <SearchIcon className="searchIcon" />
           <input label="search" placeholder="Search" type="text" />
         </span>
-        <ul>
+        <ul className="Nav__list">
           <li>
             <Button className="nav__btn">
               <NavLink
@@ -66,7 +77,7 @@ const Nav = ({ userinfo }) => {
             </Button>
           </li>
           <li>
-            {checkuser && (
+            {checkuser ? (
               <Button className="nav__btn">
                 <NavLink
                   exact
@@ -77,8 +88,7 @@ const Nav = ({ userinfo }) => {
                   Login / Signup
                 </NavLink>
               </Button>
-            )}
-            {!checkuser && (
+            ) : (
               <Button className="nav__btn">
                 <NavLink
                   exact

@@ -5,12 +5,36 @@ import ArrowRightAltOutlinedIcon from "@material-ui/icons/ArrowRightAltOutlined"
 import axios from "axios";
 import BlogCard from "../Blog_Cards/BlogCard";
 import { useHistory } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { Backdrop, Button, Fade, Modal, TextField } from "@material-ui/core";
+import { actionTypes } from "../../UserContext/reducer";
+import { useStateValue } from "../../UserContext/Stateprovider";
+import { CheckCircleOutline } from "@material-ui/icons";
 
-const Profile = ({ userInfo }) => {
+const Profile = ({ userObj }) => {
+  // UserInfo from Context
+  const [{ userInfo }, dispatch] = useStateValue();
+
+  // User
   let [user, setUser] = useState({});
+
+  // History
   const history = useHistory();
+
+  // User-Blogs
   const [userblogs, setUserblogs] = useState([]);
+
+  // ChangeEmail
+  const [newMail, setNewMail] = useState("");
+  const [openEmailModal, setOpenEmailModal] = useState(false);
+  const [emailChanged, setEmailChanged] = useState(false);
+
+  const modalOpen = () => {
+    setOpenEmailModal(true);
+  };
+
+  const modalClose = () => {
+    setOpenEmailModal(false);
+  };
 
   // getBlogs
   function parseJwt(token) {
@@ -29,8 +53,8 @@ const Profile = ({ userInfo }) => {
   }
 
   useEffect(() => {
-    if (userInfo !== null) {
-      let u = parseJwt(userInfo);
+    if (userObj !== null) {
+      let u = parseJwt(userObj);
       axios
         .get(`http://localhost/api/blog/user/${u.username}`)
         .then((res) => {
@@ -41,11 +65,103 @@ const Profile = ({ userInfo }) => {
     } else {
       history.push("/login");
     }
-  }, [userInfo, history]);
+  }, [userObj, history]);
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    dispatch({
+      type: actionTypes.SET_USER,
+      userInfo: null,
+    });
+    history.push("/");
+  };
+
+  const ChangeEmail = () => {
+    var data = {
+      new_email: newMail,
+    };
+
+    var config = {
+      method: "patch",
+      url: "http://localhost/api/user/change-email",
+      headers: {
+        Authorization: `Bearer ${userObj}`,
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then((res) => {
+        setNewMail("");
+        setEmailChanged(true);
+        setTimeout(() => {
+          modalClose();
+        }, 1500);
+      })
+      .catch((err) => {
+        if (err.response) {
+          document.querySelector(".sameEmail").style.display = "block";
+        }
+      });
+  };
 
   return (
     <div className="profile">
       <section className="section__Profile">
+        <Modal
+          className="Modal"
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={openEmailModal}
+          onClose={modalClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={openEmailModal}>
+            <div className="Modal__Container">
+              {emailChanged ? (
+                <div className="emailChanged">
+                  <CheckCircleOutline />
+                  <h3>Email is Changed</h3>
+                </div>
+              ) : (
+                <div>
+                  <h4>Change Email</h4>
+                  <h5 className="sameEmail">Error while updating Email </h5>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      ChangeEmail();
+                    }}
+                    className="formChangeEmail"
+                  >
+                    <TextField
+                      type="email"
+                      value={newMail}
+                      onChange={(e) => {
+                        setNewMail(e.target.value);
+                      }}
+                      variant="outlined"
+                      color="secondary"
+                      className="emailInput"
+                      label="Change Email"
+                    />
+                    <Button
+                      disabled={newMail === ""}
+                      className="change__Emailbtn"
+                      type="submit"
+                    >
+                      Change Email
+                    </Button>
+                  </form>
+                </div>
+              )}
+            </div>
+          </Fade>
+        </Modal>
         <div className="profile__col1">
           <span className="profile__col1__Container">
             <img src={profilepic} alt="some kid walking" />
@@ -68,8 +184,26 @@ const Profile = ({ userInfo }) => {
               </h4>
             </span>
             <span className="Account__col2">
-              <Button className="change__btn">Change Password</Button>
-              <Button className="change__btn">Change E-mail</Button>
+              <Button
+                onClick={() => {
+                  logOut();
+                }}
+                className="change__btn"
+              >
+                Log Out
+              </Button>
+              <span className="ChangeEmailPasswd">
+                <Button className="change__btn">Change Password</Button>
+                <Button
+                  className="change__btn"
+                  onClick={() => {
+                    modalOpen();
+                    setEmailChanged(false);
+                  }}
+                >
+                  Change Email
+                </Button>
+              </span>
             </span>
           </div>
           <div className="Account__cards">
@@ -96,90 +230,6 @@ const Profile = ({ userInfo }) => {
         </div>
       </section>
     </div>
-
-    // <div className="profile">
-    //   <div className="Pcol1">
-    //     <div className="Pcol1__row1">
-    //       <div className="profile__container">
-    //         {/* <img src={profilepic} alt="" /> */}
-    //       </div>
-    //     </div>
-    //     <div className="Pcol1__row2">
-    //       <Button className="createBlog__btn">
-    //         Create Blog
-    //         <ArrowRightAltOutlinedIcon />
-    //       </Button>
-    //     </div>
-    //   </div>
-    //   <div className="Pcol2">
-    //     <div className="Pcol2__row1">
-    //       <div className="Pcol2__row1__col1">
-    //         <h1>{user.username}</h1>
-    //         <p>Account Created at</p>
-    //       </div>
-    //       <div className="Pcol2__row1__col2">
-    //         <Button className="secondary__btn">Change Password</Button>
-    //         <Button
-    //           onClick={() => {
-    //             handleModalOpen();
-    //           }}
-    //           className="secondary__btn"
-    //         >
-    //           Change E-mail
-    //         </Button>
-    //         <Modal
-    //           aria-labelledby="transition-modal-title"
-    //           aria-describedby="transition-modal-description"
-    //           className="Email__modal"
-    //           open={openModal}
-    //           onClose={handleModalClose}
-    //           closeAfterTransition
-    //           BackdropComponent={Backdrop}
-    //           BackdropProps={{
-    //             timeout: 500,
-    //           }}
-    //         >
-    //           <Fade in={openModal}>
-    //             <div className="Email__modal__paper">
-    //               <form
-    //                 onSubmit={(e) => {
-    //                   e.preventDefault();
-    //                   console.log(newEmail);
-    //                 }}
-    //               >
-    //                 <input
-    //                   value={newEmail}
-    //                   onChange={(e) => {
-    //                     setNewEmail(e.target.value);
-    //                   }}
-    //                   type="email"
-    //                   placeholder="xyz@myemail.com"
-    //                 />
-    //                 <Button type="submit" className="changeEmail__btn">
-    //                   Change Email
-    //                 </Button>
-    //               </form>
-    //             </div>
-    //           </Fade>
-    //         </Modal>
-    //       </div>
-    //     </div>
-    //     <div className="Pcol2__row2">
-    //       <div className="Pcol2__row2__row1">
-    //         <p>Blogs by you</p>
-    //       </div>
-    //       <div className="Pcol2__row2__row2">
-    //         {userblogs.map((blog) => (
-    //           <BlogCard
-    //             key={blog.title}
-    //             title={blog.title}
-    //             author={blog.author}
-    //           />
-    //         ))}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 

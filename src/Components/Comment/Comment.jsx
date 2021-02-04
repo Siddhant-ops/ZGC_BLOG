@@ -8,6 +8,8 @@ import axios from "axios";
 const Comment = ({ comment_id, blog_id, username, content }) => {
   const [{ userInfo }, dispatch] = useStateValue();
 
+  console.log(username);
+
   const deleteComment = async () => {
     if (userInfo !== null) {
       var data = {
@@ -38,7 +40,7 @@ const Comment = ({ comment_id, blog_id, username, content }) => {
 
   return (
     <div className="comment__Container xyz-in" xyz="fade up-5 stagger">
-      {userInfo.username === username ? (
+      {userInfo !== null && userInfo.username === username ? (
         <div className="comment__top">
           <h5>{username}</h5>
           <IconButton onClick={deleteComment} className="delete__btn">

@@ -1,5 +1,6 @@
 import { Button, IconButton } from "@material-ui/core";
 import { ArrowRightAlt, DeleteOutline } from "@material-ui/icons";
+import MDEditor from "@uiw/react-md-editor";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useStateValue } from "../../UserContext/Stateprovider";
@@ -9,6 +10,8 @@ import "./blog.css";
 const Blog = (props) => {
   // userInfo
   const [{ userInfo }, dispatch] = useStateValue();
+
+  console.log(props);
 
   // Data for blog
   const [title, setTitle] = useState("");
@@ -78,7 +81,13 @@ const Blog = (props) => {
         <p>15 MIN READ</p>
         <h2>{title}</h2>
         <h5>By {author}</h5>
-        <span>{content}</span>
+        <MDEditor
+          hideToolbar={true}
+          value={content}
+          height={300}
+          className="Editor"
+          preview="preview"
+        />
       </div>
       <div className="comments">
         <h3>Comments</h3>
