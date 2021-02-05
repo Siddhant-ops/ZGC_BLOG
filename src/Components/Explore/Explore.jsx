@@ -4,7 +4,7 @@ import axios from "axios";
 import { Button } from "@material-ui/core";
 import BlogCard from "../Blog_Cards/BlogCard";
 import img from "./Saly-2.png";
-import { CheckCircleOutline, PageviewTwoTone } from "@material-ui/icons";
+import { CheckCircleOutline } from "@material-ui/icons";
 
 var page = 0;
 

@@ -2,6 +2,7 @@ nav {
     height: 16vh;
     width: 100%;
     background-color: var(--background);
+    display: -ms-grid;
     display: grid;
     place-items: center;
     padding: 1.5rem 2.5rem;
@@ -10,18 +11,31 @@ nav {
 .nav__box {
     height: 100%;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
 .nav__searchbox {
     background-color: var(--third);
     height: 70%;
+    -webkit-box-flex: .25;
+    -ms-flex: .25;
     flex: .25;
     border-radius: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
@@ -31,6 +45,8 @@ nav {
 }
 
 .nav__searchbox input {
+    -webkit-box-flex: .9;
+    -ms-flex: .9;
     flex: .9;
     background-color: transparent;
     border: none;
@@ -44,9 +60,16 @@ nav {
 .Nav__list {
     list-style: none;
     height: 70%;
+    -webkit-box-flex: .4;
+    -ms-flex: .4;
     flex: .4;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 

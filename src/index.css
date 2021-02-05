@@ -15,6 +15,10 @@ body {
   background-color: var(--background);
 }
 
+::-moz-selection {
+  background-color: #ff9a51ad;
+}
+
 ::selection {
   background-color: #ff9a51ad;
 }

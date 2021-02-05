@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MDEditor, { commands } from "@uiw/react-md-editor";
 import "./CreateBlog.css";
 import { Button } from "@material-ui/core";
