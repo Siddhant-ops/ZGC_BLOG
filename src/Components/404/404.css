@@ -107,10 +107,6 @@ h5 {
 
 @media only screen and (max-width: 600px) {
 
-    nav {
-        height: 10vh;
-    }
-
     .wrapper {
         height: 80vh;
         -webkit-box-orient: vertical;

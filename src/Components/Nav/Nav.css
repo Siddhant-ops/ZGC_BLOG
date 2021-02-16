@@ -97,3 +97,47 @@ nav {
     text-transform: capitalize;
     font-size: 23px;
 }
+
+/* Mobile S screens ----------- */
+@media only screen and (max-width : 320px) {
+    nav {
+        height: 10vh;
+    }
+
+    .Nav__list {
+        display: none;
+    }
+}
+
+/* Mobile S screens ----------- */
+@media only screen and (max-width : 375px) {
+    nav {
+        height: 10vh;
+    }
+
+    .Nav__list {
+        display: none;
+    }
+}
+
+/* Mobile S screens ----------- */
+@media only screen and (max-width : 425px) {
+    nav {
+        height: 10vh;
+    }
+
+    .Nav__list {
+        display: none;
+    }
+}
+
+/* Mobile S screens ----------- */
+@media only screen and (max-width : 320px) {
+    nav {
+        height: 10vh;
+    }
+
+    .Nav__list {
+        display: none;
+    }
+}

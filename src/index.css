@@ -15,6 +15,10 @@ body {
   background-color: var(--background);
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 ::-moz-selection {
   background-color: #ff9a51ad;
 }
@@ -63,11 +67,6 @@ h5 {
 
 a {
   color: #FB7A1C;
-}
-
-body::-webkit-scrollbar {
-  display: none;
-  background-color: #FCF8F5;
 }
 
 code {
