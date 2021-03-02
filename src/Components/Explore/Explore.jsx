@@ -31,7 +31,6 @@ const Explore = () => {
   };
 
   const getBlogs = async () => {
-    console.log(page);
     await axios
       .get(`http://localhost/api/blog/${page}`)
       .then((res) => {
@@ -70,16 +69,17 @@ const Explore = () => {
         </div>
       </section>
       <section className="explore__sec2">
-        {allblogs.map((blog) => (
-          <BlogCard
-            key={blog.title}
-            id={blog._id}
-            title={blog.title}
-            author={blog.author}
-            content={blog.content}
-            comments={blog.comments}
-          />
-        ))}
+        {(allblogs !== null || allblogs !== undefined) &&
+          allblogs.map((blog) => (
+            <BlogCard
+              key={blog.title}
+              id={blog._id}
+              title={blog.title}
+              author={blog.author}
+              content={blog.content}
+              comments={blog.comments}
+            />
+          ))}
       </section>
       {moreBlogs ? (
         <Button
@@ -92,7 +92,7 @@ const Explore = () => {
           Load More...
         </Button>
       ) : (
-        <div className="caughtup__Container">
+        <div className="caughtup__Container xyz-in" xyz="fade up-5 stagger">
           <CheckCircleOutline />
           <h4>You're All Caught Up!</h4>
         </div>

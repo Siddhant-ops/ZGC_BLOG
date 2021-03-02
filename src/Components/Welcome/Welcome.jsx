@@ -25,7 +25,7 @@ const Welcome = () => {
               Photography and all the new stuff you know about.
             </h3>
           </span>
-      
+
           <span className="welcome__info4">
             <Button
               className="welcome__btn primary__btn"

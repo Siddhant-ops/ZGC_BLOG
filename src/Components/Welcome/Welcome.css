@@ -34,12 +34,19 @@
     margin-bottom: 1rem;
 }
 
+.welcome__info1 h5 {
+    font-size: 0.9rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
 .welcome__info1 hr {
     width: 3%;
     border: 2px solid var(--primary);
     background-color: var(--primary);
 }
 
+<<<<<<< HEAD
 .welcome__info2 h1{
     letter-spacing: -0.1rem;
     margin-bottom: 0.5rem;
@@ -48,6 +55,18 @@
     font-size: 1.333rem;
 }
 
+=======
+.welcome__info2 h1 {
+    letter-spacing: -0.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.welcome__info2 h3 {
+    font-size: 1.333rem;
+}
+
+
+>>>>>>> 360a697 (2__03__2021)
 .welcome__info4 {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -77,6 +96,7 @@
     font-size: 1rem !important;
     color: var(--primary) !important;
     border: 1px solid var(--primary) !important;
+    font-size: 1rem !important;
 }
 
 .welcome__col2 img {
