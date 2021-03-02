@@ -20,13 +20,12 @@ const Welcome = () => {
           </span>
           <span className="welcome__info2">
             <h1>Welcome To Blogs</h1>
-          </span>
-          <span className="welcome__info3">
             <h3>
               Lets discuss stuff related to Coding, Design Marketing,
               Photography and all the new stuff you know about.
             </h3>
           </span>
+      
           <span className="welcome__info4">
             <Button
               className="welcome__btn primary__btn"

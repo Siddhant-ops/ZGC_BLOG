@@ -8,7 +8,7 @@
 :root {
   --primary: #FB7A1C;
   --background: #FCF2EA;
-  --third: rgba(251, 122, 28, 20%)
+  --third: rgba(251, 122, 28, 5%)
 }
 
 body {
@@ -37,7 +37,6 @@ h3,
 h4,
 h5,
 p {
-  margin: 3rem 0 1.38rem;
   font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   line-height: 1.3;

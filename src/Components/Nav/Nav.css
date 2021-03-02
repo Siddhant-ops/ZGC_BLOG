@@ -1,7 +1,6 @@
 nav {
     height: 16vh;
     width: 100%;
-    background-color: var(--background);
     display: -ms-grid;
     display: grid;
     place-items: center;
@@ -24,11 +23,10 @@ nav {
 
 .nav__searchbox {
     background-color: var(--third);
-    height: 70%;
     -webkit-box-flex: .25;
     -ms-flex: .25;
     flex: .25;
-    border-radius: 20px;
+    border-radius: 3rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -37,11 +35,12 @@ nav {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    padding: 1.3rem 1rem;
 }
 
 .searchIcon {
     font-size: 1.7rem !important;
-    color: #333333 !important;
+    color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .nav__searchbox input {
@@ -51,18 +50,23 @@ nav {
     background-color: transparent;
     border: none;
     outline: none;
-    font-size: 1.7rem;
+    font-size: 1.2rem;
     color: #333333 !important;
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.Nav__list a{
+    text-decoration: none;
+    border-radius: 5rem;
+    color: #000000;
 }
 
 .Nav__list {
     list-style: none;
     height: 70%;
-    -webkit-box-flex: .4;
-    -ms-flex: .4;
-    flex: .4;
+    -webkit-box-flex: .35;
+    -ms-flex: .35;
+    flex: .35;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -75,20 +79,21 @@ nav {
 
 .nav__btn {
     border-radius: 5rem !important;
-    border: 1px solid var(--primary) !important;
+    /* border: 1px solid var(--primary) !important; */
     padding: 0 !important;
 }
 
 .btn__links {
     padding: 1rem 2rem !important;
     text-transform: none !important;
-    font-size: 1.33rem !important;
+    font-size: 1rem !important;
     text-decoration: none;
 }
 
 .active__link {
     border: none !important;
-    color: #3d3d3d !important;
+    color: #ffffff !important;
+    background-color: var(--primary);
     font-weight: bold !important;
     text-decoration: underline;
 }

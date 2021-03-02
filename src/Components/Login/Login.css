@@ -12,6 +12,17 @@
     place-items: center;
 }
 
+.login__Col1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+
+.login_Col1 img{
+    height: 100%;
+}
+
 .invalid {
     display: none;
     color: rgb(255, 83, 83);
@@ -34,6 +45,11 @@
     gap: 1.5rem;
 }
 
+
+.login__form button{
+    border-radius: 12px;
+}
+
 .input__Container {
     background-color: rgba(251, 122, 28, 5%);
     width: 100%;
@@ -44,10 +60,21 @@
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
 }
+.input__Container label{
+color: var(--primary) !important;
+}
 
 .input__Container input {
     font-size: 2.25rem;
-    color: var(--primary);
+    color: var(--primary) !important;
+}
+
+input::before{
+    border-bottom-color: rgb(251, 122, 28) !important;
+}
+
+.MuiInput-underline:after{
+    border-bottom-color: rgb(251, 122, 28) !important;
 }
 
 .login__btn {

@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+}
+
+html{
+  font-size: 14px;
+}
+
 .App {
   height: 100vh;
 }

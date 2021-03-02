@@ -16,12 +16,10 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
     padding: 6rem;
-    margin-bottom: 4rem;
-
+    padding-top: 0;
+    margin-bottom: 6rem;
+    gap: 3rem;
 }
 
 .welcome__info1 {
@@ -30,24 +28,36 @@
     letter-spacing: 5px;
     margin-bottom: 3rem;
 }
+.welcome__info1 h5{
+    font-size: 0.9rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
 
 .welcome__info1 hr {
-    width: 15%;
+    width: 3%;
     border: 2px solid var(--primary);
     background-color: var(--primary);
 }
 
+.welcome__info2 h1{
+    letter-spacing: -0.1rem;
+    margin-bottom: 0.5rem;
+}
+.welcome__info2 h3{
+    font-size: 1.333rem;
+}
+
 .welcome__info4 {
-    width: 70%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    gap: 2rem;
 }
 
 .welcome__btn {
@@ -60,9 +70,11 @@
 .primary__btn {
     background-color: var(--primary) !important;
     color: var(--background) !important;
+    font-size: 1rem !important;
 }
 
 .secondary__btn {
+    font-size: 1rem !important;
     color: var(--primary) !important;
     border: 1px solid var(--primary) !important;
 }

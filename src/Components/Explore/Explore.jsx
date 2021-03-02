@@ -54,7 +54,7 @@ const Explore = () => {
             Discover Wonderful, Thoughtful & Educational Blogs By Wonderful
             Community Of KES Shroff College
           </h4>
-          <div className="search__group">
+          {/* <div className="search__group">
             <h5>Search by tags :</h5>
             <span className="buttons__grp">
               <Button className="explore__btn active__btn">Development</Button>
@@ -63,7 +63,7 @@ const Explore = () => {
               <Button className="explore__btn">Marketing</Button>
               <Button className="explore__btn">Gaming</Button>
             </span>
-          </div>
+          </div> */}
         </div>
         <div className="welcome__col2">
           <img src={img} alt="Floating Kid" />
