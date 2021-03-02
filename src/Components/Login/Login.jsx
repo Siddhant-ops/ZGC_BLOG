@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Button, TextField } from "@material-ui/core";
 import "./Login.css";
 import mobile from "./Saly-12.png";
@@ -8,6 +8,10 @@ import { useStateValue } from "../../UserContext/Stateprovider";
 import { actionTypes } from "../../UserContext/reducer";
 
 const Login = () => {
+  useLayoutEffect(() => {
+    document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
+  });
+
   const [{ userInfo }, dispatch] = useStateValue();
   const history = useHistory();
   const [form, setForm] = useState(true);

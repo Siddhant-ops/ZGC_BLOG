@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import MDEditor, { commands } from "@uiw/react-md-editor";
 import "./CreateBlog.css";
 import { Button } from "@material-ui/core";
@@ -6,6 +6,10 @@ import { useStateValue } from "../../UserContext/Stateprovider";
 import axios from "axios";
 
 const CreateBlog = () => {
+  useLayoutEffect(() => {
+    document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
+  });
+
   const [{ userInfo }, dispatch] = useStateValue();
   const EditorplaceHolder =
     "# Hello\n## Use the top toolbar and create some Awesome Content";

@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import "./Welcome.css";
 import "./Welcome-Responsive.css";
 import laptopKid from "./Saly-13.svg";
@@ -8,6 +8,10 @@ import { useHistory } from "react-router-dom";
 import { useStateValue } from "../../UserContext/Stateprovider";
 
 const Welcome = () => {
+  useLayoutEffect(() => {
+    document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
+  });
+
   const [{ userInfo }, dispatch] = useStateValue();
   const history = useHistory();
   return (

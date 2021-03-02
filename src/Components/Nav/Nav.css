@@ -1,24 +1,10 @@
 nav {
-    height: 16vh;
     width: 100%;
-    display: -ms-grid;
-    display: grid;
-    place-items: center;
-    padding: 1.5rem 2.5rem;
-}
-
-.nav__box {
-    height: 100%;
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    position: relative;
     display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
+    padding: 1.5rem 2.5rem;
 }
 
 .nav__searchbox {
@@ -60,6 +46,11 @@ nav {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.menu {
+    display: none !important;
+    color: var(--primary) !important;
+}
+
 .Nav__list a {
     text-decoration: none;
     border-radius: 5rem;
@@ -80,12 +71,22 @@ nav {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    transition: 1.5s ease-in-out;
+    -webkit-transition: 1.5s ease-in-out;
+    -moz-transition: 1.5s ease-in-out;
+    -ms-transition: 1.5s ease-in-out;
+    -o-transition: 1.5s ease-in-out;
 }
 
 .nav__btn {
     border-radius: 5rem !important;
-    /* border: 1px solid var(--primary) !important; */
+    /*border: 1px solid var(--primary) !important;
+    */
     padding: 0 !important;
+    -webkit-border-radius: 5rem !important;
+    -moz-border-radius: 5rem !important;
+    -ms-border-radius: 5rem !important;
+    -o-border-radius: 5rem !important;
 }
 
 .btn__links {
@@ -110,11 +111,46 @@ nav {
 
 /* Mobile S screens ----------- */
 @media only screen and (max-width: 600px) {
+
     nav {
-        height: 10vh;
+        padding: 1rem 2rem;
+        flex-direction: column;
+    }
+
+    .nav__box {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu {
+        display: inline-flex !important;
+        z-index: 1;
     }
 
     .Nav__list {
-        display: none;
+        pointer-events: none;
+        position: fixed;
+        border-radius: .5rem;
+        width: 100%;
+        height: 30%;
+        background: rgba(255, 172, 172, 0.367);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        padding: 1rem 2rem;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        clip-path: circle(10px at 50% -10%);
+        -webkit-border-radius: .5rem;
+        -moz-border-radius: .5rem;
+        -ms-border-radius: .5rem;
+        -o-border-radius: .5rem;
+    }
+
+    .Nav__listOpen {
+        pointer-events: all;
+        display: inline-flex;
+        clip-path: circle(1000px at 95% -10%);
     }
 }

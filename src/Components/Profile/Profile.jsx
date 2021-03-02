@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import "./Profile.css";
 import profilepic from "./Group 234.png";
 import ArrowRightAltOutlinedIcon from "@material-ui/icons/ArrowRightAltOutlined";
@@ -11,6 +11,10 @@ import { useStateValue } from "../../UserContext/Stateprovider";
 import { CheckCircleOutline } from "@material-ui/icons";
 
 const Profile = ({ userObj }) => {
+  useLayoutEffect(() => {
+    document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
+  });
+
   // UserInfo from Context
   const [{ userInfo }, dispatch] = useStateValue();
 

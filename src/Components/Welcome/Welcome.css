@@ -16,7 +16,7 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    padding: 6rem;
+    padding-left: 6rem;
     padding-top: 0;
     margin-bottom: 6rem;
     gap: 3rem;
@@ -28,7 +28,8 @@
     letter-spacing: 5px;
     margin-bottom: 3rem;
 }
-.welcome__info1 h5{
+
+.welcome__info1 h5 {
     font-size: 0.9rem;
     font-weight: 800;
     margin-bottom: 1rem;
@@ -46,16 +47,6 @@
     background-color: var(--primary);
 }
 
-<<<<<<< HEAD
-.welcome__info2 h1{
-    letter-spacing: -0.1rem;
-    margin-bottom: 0.5rem;
-}
-.welcome__info2 h3{
-    font-size: 1.333rem;
-}
-
-=======
 .welcome__info2 h1 {
     letter-spacing: -0.1rem;
     margin-bottom: 0.5rem;
@@ -65,8 +56,6 @@
     font-size: 1.333rem;
 }
 
-
->>>>>>> 360a697 (2__03__2021)
 .welcome__info4 {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -100,5 +89,21 @@
 }
 
 .welcome__col2 img {
-    height: 90%;
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+    .welcome__section {
+        grid-template-rows: 50% 50%;
+        grid-template-columns: none;
+    }
+
+    .welcome__col1 {
+        padding-left: 1.5rem;
+    }
+
+    .welcome__col2 {
+        grid-row: 1/2;
+        padding: 1rem 0;
+    }
 }

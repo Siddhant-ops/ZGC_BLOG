@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import "./Explore.css";
 import axios from "axios";
 import { Button } from "@material-ui/core";
@@ -13,6 +13,10 @@ const Explore = () => {
   const [allblogs, setAllblogs] = useState([]);
   const [initial, setinitial] = useState(true);
   const [moreBlogs, setMoreBlogs] = useState(true);
+
+  useLayoutEffect(() => {
+    document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
+  });
 
   useEffect(() => {
     if (initial) {
