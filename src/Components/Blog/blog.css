@@ -38,9 +38,8 @@
     color: var(--primary);
 }
 
-.blog span {
-    font-size: 1.5rem;
-    line-height: 150%;
+.Editor {
+    height: 50vh !important;
 }
 
 .comments {
@@ -69,7 +68,6 @@
     border: none;
     padding: 1.875rem;
     color: var(--primary);
-    margin-bottom: 1.875rem;
     font-size: 1.2rem;
 }
 
@@ -132,6 +130,7 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    gap: 2rem;
 }
 
 .primary_btn {
@@ -163,22 +162,25 @@
 }
 
 
-.comments .blog_comments {
-    margin-top: 2rem;
-    display: -ms-grid;
+.comments .blog__comments {
+    margin: 2rem 0;
+    /* display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1.5rem 1fr;
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: auto;
-    grid-gap: 1.5rem;
+    grid-gap: 1.5rem; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
-.comments .blog_comments ul li {
+.comments .blog__comments ul li {
     padding: 1.875rem 0;
     border-top: 1px solid #fb791c17;
 }
 
-.comments .blog_comments ul li p {
+.comments .blog__comments ul li p {
     color: var(--primary);
     font-size: 1rem;
     margin-bottom: 0.5em;
@@ -187,11 +189,16 @@
 @media only screen and (max-width: 600px) {
 
     .Blogwrapper {
-        margin: 0 1.875rem;
+        margin: 0;
+        padding: 0 2rem;
     }
 
     .comments input {
-        width: auto;
+        width: 100%;
+    }
+
+    .primary_btn {
+        padding: 1rem 1.5rem;
     }
 
 }

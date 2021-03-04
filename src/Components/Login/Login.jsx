@@ -10,8 +10,16 @@ import { actionTypes } from "../../UserContext/reducer";
 const Login = () => {
   useLayoutEffect(() => {
     document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
+    if (
+      document.querySelector(".Nav__list").classList.contains("NavlistOpen")
+    ) {
+      document.querySelector("#menuIcon").classList.toggle("closeIcon");
+      document.querySelector("#closeIcon").classList.toggle("closeIcon");
+    } else {
+      document.querySelector("#menuIcon").classList.toggle("closeIcon");
+      document.querySelector("#closeIcon").classList.toggle("closeIcon");
+    }
   });
-
   const [{ userInfo }, dispatch] = useStateValue();
   const history = useHistory();
   const [form, setForm] = useState(true);
@@ -136,6 +144,7 @@ const Login = () => {
         <img src={mobile} alt="Some random Mobile" />
       </div>
       <div className="login__Col2">
+        {form ? <h2>Login</h2> : <h2>Sign Up</h2>}
         {form ? (
           <form
             onSubmit={(e) => {

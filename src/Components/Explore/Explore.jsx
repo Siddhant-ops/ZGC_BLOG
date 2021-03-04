@@ -9,14 +9,22 @@ import { CheckCircleOutline } from "@material-ui/icons";
 var page = 0;
 
 const Explore = () => {
+  useLayoutEffect(() => {
+    document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
+    if (
+      document.querySelector(".Nav__list").classList.contains("NavlistOpen")
+    ) {
+      document.querySelector("#menuIcon").classList.toggle("closeIcon");
+      document.querySelector("#closeIcon").classList.toggle("closeIcon");
+    } else {
+      document.querySelector("#menuIcon").classList.toggle("closeIcon");
+      document.querySelector("#closeIcon").classList.toggle("closeIcon");
+    }
+  });
   var myblogs = [];
   const [allblogs, setAllblogs] = useState([]);
   const [initial, setinitial] = useState(true);
   const [moreBlogs, setMoreBlogs] = useState(true);
-
-  useLayoutEffect(() => {
-    document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
-  });
 
   useEffect(() => {
     if (initial) {
@@ -51,7 +59,7 @@ const Explore = () => {
   return (
     <div className="explore">
       <section className="explore__sec1">
-        <div className="welcome__col1">
+        <div className="explore__sec1Col1">
           <h1>Explore</h1>
           <h4>
             Discover Wonderful, Thoughtful & Educational Blogs By Wonderful
@@ -68,7 +76,7 @@ const Explore = () => {
             </span>
           </div> */}
         </div>
-        <div className="welcome__col2">
+        <div className="explore__sec1Col2">
           <img src={img} alt="Floating Kid" />
         </div>
       </section>

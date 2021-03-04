@@ -2,11 +2,23 @@ import { Button, IconButton } from "@material-ui/core";
 import "./Nav.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useStateValue } from "../../UserContext/Stateprovider";
-import { Menu } from "@material-ui/icons";
+import { Close, Menu } from "@material-ui/icons";
 
 const Nav = ({ userObj }) => {
+  useLayoutEffect(() => {
+    if (
+      document.querySelector(".Nav__list").classList.contains("NavlistOpen")
+    ) {
+      document.querySelector("#menuIcon").classList.toggle("closeIcon");
+      document.querySelector("#closeIcon").classList.toggle("closeIcon");
+    } else {
+      document.querySelector("#menuIcon").classList.toggle("closeIcon");
+      document.querySelector("#closeIcon").classList.toggle("closeIcon");
+    }
+  });
+
   const [{ userInfo }, dispatch] = useStateValue();
   const [user, setUser] = useState([]);
   const [checkuser, setCheckuser] = useState(true);
@@ -53,14 +65,30 @@ const Nav = ({ userObj }) => {
           <input label="search" placeholder="Search" type="text" />
         </span>
         <IconButton
-          onTouchStart={() => {
+          onClick={() => {
             document
               .querySelector(".Nav__list")
               .classList.toggle("Nav__listOpen");
+            if (
+              document
+                .querySelector(".Nav__list")
+                .classList.contains("NavlistOpen")
+            ) {
+              document.querySelector("#menuIcon").classList.toggle("closeIcon");
+              document
+                .querySelector("#closeIcon")
+                .classList.toggle("closeIcon");
+            } else {
+              document.querySelector("#menuIcon").classList.toggle("closeIcon");
+              document
+                .querySelector("#closeIcon")
+                .classList.toggle("closeIcon");
+            }
           }}
           className="menu"
         >
-          <Menu />
+          <Menu id="menuIcon" className="closeIcon" />
+          <Close id="closeIcon" />
         </IconButton>
       </div>
       <ul className="Nav__list">

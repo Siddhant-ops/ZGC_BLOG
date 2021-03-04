@@ -7,19 +7,21 @@
 }
 
 .login__Col2 {
-    display: -ms-grid;
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
 }
 
-.login__Col1{
+.login__Col1 {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 85vh;
 }
 
-.login_Col1 img{
+.login_Col1 img {
     height: 100%;
 }
 
@@ -46,7 +48,7 @@
 }
 
 
-.login__form button{
+.login__form button {
     border-radius: 12px;
 }
 
@@ -60,8 +62,9 @@
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
 }
-.input__Container label{
-color: var(--primary) !important;
+
+.input__Container label {
+    color: var(--primary) !important;
 }
 
 .input__Container input {
@@ -69,11 +72,11 @@ color: var(--primary) !important;
     color: var(--primary) !important;
 }
 
-input::before{
+input::before {
     border-bottom-color: rgb(251, 122, 28) !important;
 }
 
-.MuiInput-underline:after{
+.MuiInput-underline:after {
     border-bottom-color: rgb(251, 122, 28) !important;
 }
 
@@ -95,4 +98,29 @@ input::before{
     color: var(--primary);
     text-decoration: underline;
     cursor: pointer;
+}
+
+@media only screen and (max-width:600px) {
+    .login {
+        display: block;
+    }
+
+    .login__Col1 {
+        display: none;
+    }
+
+    .login__Col2 {
+        padding: 2rem;
+        align-items: flex-start;
+        gap: 3rem;
+    }
+
+    .login__form {
+        padding: 1rem 0;
+        gap: 2rem;
+    }
+
+    .input__Container {
+        padding: 1rem;
+    }
 }

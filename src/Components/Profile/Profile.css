@@ -20,11 +20,10 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    min-height: 75vh;
+    padding: 2rem;
 }
 
 .profile__col1__Container {
-    min-height: 73vh;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -38,6 +37,7 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    gap: 5rem;
 }
 
 .createBlog__btn {
@@ -54,7 +54,13 @@
     display: grid;
     -ms-grid-columns: 50% 50%;
     grid-template-columns: 50% 50%;
-    margin-top: 3rem;
+    margin: 3rem 0;
+}
+
+.Account__col1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .Account__col1>h1 {
@@ -69,10 +75,8 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
     -webkit-box-pack: space-evenly;
     -ms-flex-pack: space-evenly;
     justify-content: space-evenly;
@@ -121,6 +125,10 @@
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: auto;
     grid-gap: 1.5rem;
+    /* display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem; */
 }
 
 .Modal {
@@ -191,4 +199,45 @@
     font-size: 1rem !important;
     color: var(--background) !important;
     border: 1px solid var(--primary) !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .section__Profile {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profile__col1 {
+        padding: 0 2rem;
+    }
+
+    .profile__col1__Container {
+        height: 100%;
+        width: 100%;
+    }
+
+    .Account {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0 2rem;
+    }
+
+    .change__btn {
+        padding: 1rem !important;
+    }
+
+    .Account__cards {
+        padding: 0 2rem;
+    }
+
+    .Account__cards hr {
+        width: 100%;
+    }
+
+    .Account__Container {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 2rem 0;
+    }
 }

@@ -20,12 +20,12 @@ const Footer = () => {
         <div className="footer__col1">
           <h4>Contact Designer & Developer</h4>
           <h5>
-            <a href="mailto:mihirsodawalla01@gmail.com ">
+            <a href="mailto:mihirsodawalla01@gmail.com?subject=KES Shroff College Blog site">
               mihirsodawalla01@gmail.com
             </a>
           </h5>
           <h5>
-            <a href="mailto:siddhantdalvi3@gmail.com">
+            <a href="mailto:siddhantdalvi3@gmail.com?subject=KES Shroff College Blog site">
               siddhantdalvi3@gmail.com
             </a>
           </h5>

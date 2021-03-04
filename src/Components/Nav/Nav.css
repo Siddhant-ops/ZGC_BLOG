@@ -106,7 +106,7 @@ nav {
 
 .username {
     text-transform: capitalize;
-    font-size: 23px;
+    /* font-size: 23px; */
 }
 
 /* Mobile S screens ----------- */
@@ -126,6 +126,10 @@ nav {
     .menu {
         display: inline-flex !important;
         z-index: 1;
+    }
+
+    .closeIcon {
+        display: none !important;
     }
 
     .Nav__list {

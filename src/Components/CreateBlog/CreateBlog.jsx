@@ -8,6 +8,15 @@ import axios from "axios";
 const CreateBlog = () => {
   useLayoutEffect(() => {
     document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
+    if (
+      document.querySelector(".Nav__list").classList.contains("NavlistOpen")
+    ) {
+      document.querySelector("#menuIcon").classList.toggle("closeIcon");
+      document.querySelector("#closeIcon").classList.toggle("closeIcon");
+    } else {
+      document.querySelector("#menuIcon").classList.toggle("closeIcon");
+      document.querySelector("#closeIcon").classList.toggle("closeIcon");
+    }
   });
 
   const [{ userInfo }, dispatch] = useStateValue();
@@ -43,6 +52,8 @@ const CreateBlog = () => {
     }
   };
 
+  console.log(window.screen.width);
+
   return (
     <div className="createBlog">
       <section className="section__CreateBlog">
@@ -62,7 +73,7 @@ const CreateBlog = () => {
             <MDEditor
               height={600}
               className="Editor"
-              preview="live"
+              preview={window.screen.width > 600 ? "live" : "edit"}
               value={editorContent}
               onChange={setEditorContent}
               autoCorrect="true"

@@ -1,7 +1,7 @@
 .comment__Container {
     border: 1px solid var(--primary);
     border-radius: 2rem;
-    min-height: 15rem;
+    /* min-height: 15rem; */
     padding: 1.5rem 2.5rem;
 }
 
@@ -16,6 +16,7 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    gap: 5rem;
 }
 
 .comment__Container h5 {

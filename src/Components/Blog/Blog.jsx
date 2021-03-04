@@ -2,12 +2,25 @@ import { Button } from "@material-ui/core";
 import { ArrowRightAlt } from "@material-ui/icons";
 import MDEditor from "@uiw/react-md-editor";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useStateValue } from "../../UserContext/Stateprovider";
 import Comment from "../Comment/Comment";
 import "./blog.css";
 
 const Blog = (props) => {
+  useLayoutEffect(() => {
+    document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
+    if (
+      document.querySelector(".Nav__list").classList.contains("NavlistOpen")
+    ) {
+      document.querySelector("#menuIcon").classList.toggle("closeIcon");
+      document.querySelector("#closeIcon").classList.toggle("closeIcon");
+    } else {
+      document.querySelector("#menuIcon").classList.toggle("closeIcon");
+      document.querySelector("#closeIcon").classList.toggle("closeIcon");
+    }
+  });
+
   // userInfo
   const [{ userInfo }, dispatch] = useStateValue();
 
@@ -84,7 +97,6 @@ const Blog = (props) => {
         <MDEditor
           hideToolbar={true}
           value={content}
-          height={300}
           className="Editor"
           preview="preview"
         />
@@ -122,7 +134,7 @@ const Blog = (props) => {
             </Button>
           </div>
         )}
-        <div className="blog_comments">
+        <div className="blog__comments">
           {comments.length === 0 ? (
             <h3>No Comments yet</h3>
           ) : (
