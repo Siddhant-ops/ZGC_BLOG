@@ -5,15 +5,6 @@ import Standing from "./Group 235.png";
 const Err404 = () => {
   useLayoutEffect(() => {
     document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
-    if (
-      document.querySelector(".Nav__list").classList.contains("NavlistOpen")
-    ) {
-      document.querySelector("#menuIcon").classList.toggle("closeIcon");
-      document.querySelector("#closeIcon").classList.toggle("closeIcon");
-    } else {
-      document.querySelector("#menuIcon").classList.toggle("closeIcon");
-      document.querySelector("#closeIcon").classList.toggle("closeIcon");
-    }
   });
 
   return (

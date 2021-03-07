@@ -115,10 +115,11 @@
     color: var(--primary);
     text-transform: uppercase;
     letter-spacing: .15rem;
+    margin-bottom: 1rem;
 }
 
 .Account__Container {
-    padding: 3rem;
+    padding: 3rem 0;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1.5rem 1fr;

@@ -2,23 +2,11 @@ import { Button, IconButton } from "@material-ui/core";
 import "./Nav.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { NavLink } from "react-router-dom";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useStateValue } from "../../UserContext/Stateprovider";
-import { Close, Menu } from "@material-ui/icons";
+import { Menu } from "@material-ui/icons";
 
 const Nav = ({ userObj }) => {
-  useLayoutEffect(() => {
-    if (
-      document.querySelector(".Nav__list").classList.contains("NavlistOpen")
-    ) {
-      document.querySelector("#menuIcon").classList.toggle("closeIcon");
-      document.querySelector("#closeIcon").classList.toggle("closeIcon");
-    } else {
-      document.querySelector("#menuIcon").classList.toggle("closeIcon");
-      document.querySelector("#closeIcon").classList.toggle("closeIcon");
-    }
-  });
-
   const [{ userInfo }, dispatch] = useStateValue();
   const [user, setUser] = useState([]);
   const [checkuser, setCheckuser] = useState(true);
@@ -69,26 +57,10 @@ const Nav = ({ userObj }) => {
             document
               .querySelector(".Nav__list")
               .classList.toggle("Nav__listOpen");
-            if (
-              document
-                .querySelector(".Nav__list")
-                .classList.contains("NavlistOpen")
-            ) {
-              document.querySelector("#menuIcon").classList.toggle("closeIcon");
-              document
-                .querySelector("#closeIcon")
-                .classList.toggle("closeIcon");
-            } else {
-              document.querySelector("#menuIcon").classList.toggle("closeIcon");
-              document
-                .querySelector("#closeIcon")
-                .classList.toggle("closeIcon");
-            }
           }}
           className="menu"
         >
-          <Menu id="menuIcon" className="closeIcon" />
-          <Close id="closeIcon" />
+          <Menu id="menuIcon" />
         </IconButton>
       </div>
       <ul className="Nav__list">

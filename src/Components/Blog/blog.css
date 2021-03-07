@@ -38,7 +38,7 @@
     color: var(--primary);
 }
 
-.Editor {
+.blog .Editor {
     height: 50vh !important;
 }
 
@@ -171,7 +171,8 @@
     grid-auto-rows: auto;
     grid-gap: 1.5rem; */
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    flex-direction: column;
     gap: 1rem;
 }
 

@@ -13,15 +13,6 @@ import { CheckCircleOutline } from "@material-ui/icons";
 const Profile = ({ userObj }) => {
   useLayoutEffect(() => {
     document.querySelector(".Nav__list").classList.remove("Nav__listOpen");
-    if (
-      document.querySelector(".Nav__list").classList.contains("NavlistOpen")
-    ) {
-      document.querySelector("#menuIcon").classList.toggle("closeIcon");
-      document.querySelector("#closeIcon").classList.toggle("closeIcon");
-    } else {
-      document.querySelector("#menuIcon").classList.toggle("closeIcon");
-      document.querySelector("#closeIcon").classList.toggle("closeIcon");
-    }
   });
 
   // UserInfo from Context
